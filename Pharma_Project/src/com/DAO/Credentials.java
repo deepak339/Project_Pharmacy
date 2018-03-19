@@ -5,10 +5,10 @@ public class Credentials {
 	
 	private String userName;
 	private String userPassword;
-	private String role;
+	private boolean role;
 
 	
-	public Credentials(String userName, String userPassword, String role) {
+	public Credentials(String userName, String userPassword, boolean role) {
 		super();
 		this.userName = userName;
 		this.userPassword = userPassword;
@@ -33,11 +33,11 @@ public class Credentials {
 	}
 	
 
-	public String getRole() {
+	public boolean getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(boolean role) {
 		this.role = role;
 	}
 

@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 
 import com.DAO.Credentials;
 import com.DAO.OperatorPOJO;
-import com.DBService.ConnectDB;
+import com.DBUtils.ConnectDB;
 
 public class AdminManageOperation implements IAdminManageOperation {
 

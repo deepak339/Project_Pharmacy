@@ -1,4 +1,4 @@
-package com.DBService;
+package com.DBUtils;
 
 import java.sql.*;
 
@@ -15,11 +15,6 @@ public class ConnectDB {
 		   //  Database credentials
 		   static final String USER = "root";
 		   static final String PASS = "admin";
-		   
-		   
-		  
-		   
-		   
 		   /**
 		     * Get a connection to database
 		     * @return Connection object
@@ -40,7 +35,7 @@ public class ConnectDB {
 				}
 				return conn;
 		    }
-		    public static Connection getConnection(String database_name)
+		   /* public static Connection getConnection(String database_name)
 		    {
 		    	Connection conn=null;
 		    	try {
@@ -58,7 +53,7 @@ public class ConnectDB {
 					e.printStackTrace();
 				}
 				return conn;
-		    }
+		    }*/
 		    
 		    
 }

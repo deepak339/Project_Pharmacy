@@ -1,26 +1,26 @@
-package com.DAO.LoginDAO;
+package com.Login;
 
 import java.sql.*;
 
 import com.DAO.Credentials;
-import com.DBService.ConnectDB;
+import com.DBUtils.ConnectDB;
 
 public class LoginDAO implements ILoginDAO{
 
 
 	
 	public boolean validateUser(Credentials user) {
-		// TODO Auto-generated method stub
+
 		boolean result = false;
 
 		String userName = user.getUserName();
 		String userPassword = user.getUserPassword();
-		String role = user.getRole();
+		boolean role = user.getRole();
 		try (Connection con = ConnectDB.getConnection()){
 			
 			String sqlQuery;
 			
-			if(role.equals("admin"))
+			if(role==true)
 			{
 			sqlQuery="select admin_name,admin_password from admin where admin_username=? and admin_password=?";
 			}
