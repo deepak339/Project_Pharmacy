@@ -9,9 +9,10 @@ public class Login implements ILogin{
 		boolean result = false;
 		String userName = user.getUserName();
 		String userPassword = user.getUserPassword();
+		boolean role=user.getRole();
 		try (Connection con = ConnectDB.getConnection()){
 			String sqlQuery;
-			if(user.getRole())
+			if(role)
 			{//role is true for admin
 				sqlQuery="select admin_name,admin_password from admin where admin_username=? and admin_password=?";
 			}

@@ -3,6 +3,10 @@ public class Credentials {
 	private String userName;
 	private String userPassword;
 	private boolean role;
+	public Credentials()
+	{
+		
+	}
 	public Credentials(String userName, String userPassword, boolean role) {
 		super();
 		this.userName = userName;

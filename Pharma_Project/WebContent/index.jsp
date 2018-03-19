@@ -1,3 +1,4 @@
+<%@page import="com.DAO.login.*"%>
 <%@page import="com.DAO.Credentials"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -8,13 +9,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Login</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet prefetch'
+	href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/style_dialog.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="logmod">
@@ -27,36 +33,46 @@
 				<div class="logmod__tab-wrapper">
 					<div class="logmod__tab lgm-1">
 						<div class="logmod__heading">
-							<span class="logmod__heading-subtitle">Enter your username and password <strong>to log in</strong>
+							<span class="logmod__heading-subtitle">Enter your username
+								and password <strong>to log in</strong>
 							</span>
 						</div>
 						<div class="logmod__form">
-							<form accept-charset="utf-8" method="post" class="simform" id="myForm" >
+							<form accept-charset="utf-8" method="post" class="simform"
+								id="myForm">
 								<div class="sminputs">
 									<div class="input full">
 										<label class="string optional" for="user-name">Username*</label>
-										<input class="string optional"  name="name" id="user-Username" placeholder="Username" type="text" />
+										<input class="string optional" name="name" id="user-Username"
+											placeholder="Username" type="text" />
 									</div>
 								</div>
 								<input type="hidden" name="role_play" id="flag">
 								<div class="sminputs">
 									<div class="input full">
-										<label class="string optional" for="user-pw">Password*</label> 
-										<input name="pwd" class="form-control is-invalid" id="user-pw" placeholder="Password" type="password" /> 
-										<span class="hide-password">Show</span>
+										<label class="string optional" for="user-pw">Password*</label>
+										<input name="pwd" class="form-control is-invalid" id="user-pw"
+											placeholder="Password" type="password" /> <span
+											class="hide-password">Show</span>
 									</div>
 								</div>
-								<div  class="logmod__heading" >
-							<span style="display:none;" id ="forgetmsgsuccess" class="logmod__heading-subtitle" ><strong>Password has been sent</strong> to your Registered Mail id
-							</span>
-						</div>
-						<div  class="logmod__heading" >
-							<span style="display:none" id ="forgetmsgfailure" class="logmod__heading-subtitle" >This <strong>Email not Registered</strong> with us
-							</span>
-						</div>
+								<div class="logmod__heading">
+									<span style="display: none;" id="forgetmsgsuccess"
+										class="logmod__heading-subtitle"><strong>Password
+											has been sent</strong> to your Registered Mail id </span>
+								</div>
+								<div class="logmod__heading">
+									<span style="display: none" id="forgetmsgfailure"
+										class="logmod__heading-subtitle">This <strong>Email
+											not Registered</strong> with us
+									</span>
+								</div>
 								<div class="simform__actions" align=center>
-									<br> <input type="button" class="btn btn-success" name="commit" onclick="myFunctionAdmin()" value="Login as Admin" />
-									     <input type="button" class="btn btn-success" name="commit" onclick="myFunctionOperator()" value="Login as Operator" /> <br>
+									<br> <input type="button" class="btn btn-success"
+										name="commit" onclick="myFunctionAdmin()"
+										value="Login as Admin" /> <input type="button"
+										class="btn btn-success" name="commit"
+										onclick="myFunctionOperator()" value="Login as Operator" /> <br>
 								</div>
 							</form>
 						</div>
@@ -69,19 +85,22 @@
 		if (request.getParameter("name") != null) {
 			String username = request.getParameter("name");
 			String pwd = request.getParameter("pwd");
-			String role_play=request.getParameter("role_play");
-			boolean role=false;
-			if(role_play.equals("true")){role=true;}
+			String role_play = request.getParameter("role_play");
+			boolean role = false;
+			if (role_play.equals("true")) {
+				role = true;
+			} //role=1 for admin and vice versa
 			if (role) {
-			Credentials oc = new Credentials(username, pwd,role);
-				OperatorDAOimpl odi = new OperatorDAOimpl(oc);
-				if (odi.validateOperator()==true) {
+				Credentials oc = new Credentials(username, pwd, role);
+				ILogin oda = new Login();
+
+				if (oda.validateUser(oc)) {
 					//out.print("Succesful login for operator");
 					session.setAttribute("name", username);
-					response.sendRedirect("Operator_Dashboard.jsp");
-				} 
-				if (odi.validateOperator()==false){
-	%>	<div id="myModal" class="modal">
+					response.sendRedirect("Admin_Dashboard.jsp");
+				} else {
+	%>
+	<%-- <div id="myModal" class="modal">
 		<div class="modal-content">
 			<span class="close">&times;</span>
 			<p id="msg3" align=center>
@@ -93,16 +112,19 @@
 					<p id="msg4" align="center" style="display: none;">
 						Enter your<strong> Registered Email Id</strong>
 					</p>
-					<input id="forgetemail1" type="email" style="display: none;" required>
-					<input id="forgetbtn1" type="submit"	style="display: none;" value="submit">
-					<a id="hlink1" href="#" onclick="return executeforget1()" class="special" style="text-align: center;">Forgot your Credentials? Click here </a>
+					<input id="forgetemail1" type="email" style="display: none;"
+						required> <input id="forgetbtn1" type="submit"
+						style="display: none;" value="submit"> <a id="hlink1"
+						href="#" onclick="return executeforget1()" class="special"
+						style="text-align: center;">Forgot your Credentials? Click
+						here </a>
 				</form>
 			</div>
 		</div>
 	</div>
 	<script>
 		function executeforget1() {
-			
+
 			var button1 = document.getElementById("forgetbtn1");
 			var email1 = document.getElementById("forgetemail1");
 			var msg3 = document.getElementById("msg3");
@@ -117,10 +139,8 @@
 		}
 		var modal = document.getElementById('myModal');
 		var span = document.getElementsByClassName("close")[0];
-		
 	</script>
 	<script>
-		
 		function mahesh() {
 			var modal = document.getElementById('myModal');
 			var span = document.getElementsByClassName("close")[0];
@@ -132,46 +152,43 @@
 		mahesh();
 	</script>
 	<%
-	boolean flag=false;
-	String oemail = request.getParameter("forgetemail1");
-	ForgetMailCheck ch= new ForgetMailCheck(oemail,flag); 
-	boolean check = ch.validateEmail();
-	
-	if(check==true)
-	{%><input type="hidden" value="" id="chk">
+		boolean flag = false;
+					String oemail = request.getParameter("forgetemail1");
+					ForgetMailCheck ch = new ForgetMailCheck(oemail, flag);
+					boolean check = ch.validateEmail();
+
+					if (check == true) {
+	%><input type="hidden" value="" id="chk">
 	<script>
-	if(document.getElementById("chk").value=="true")
-		{
-		var k=document.getElementById("forgetmsgsuccess");
-		k.style.display="block";
+		if (document.getElementById("chk").value == "true") {
+			var k = document.getElementById("forgetmsgsuccess");
+			k.style.display = "block";
 		}
-		</script>
-		
+	</script>
+
 	<%
-		GetCredentials gc = new GetCredentials(oemail,flag);
-		Credentials opData=gc.GetData();
-	}else
-	{%><script>
-	if(document.getElementById("chk").value!="true")
-	{
-		var j=document.getElementById("forgetmsgfailure");
-		j.style.display="block";
-	}
-		</script>
-	<%	
-	}
+		GetCredentials gc = new GetCredentials(oemail, flag);
+						Credentials opData = gc.GetData();
+					} else {
+	%><script>
+		if (document.getElementById("chk").value != "true") {
+			var j = document.getElementById("forgetmsgfailure");
+			j.style.display = "block";
 		}
-			} 
-			if (role.equals("1")){
-				Credentials ac = new Credentials(username, pwd);
-				AdminDAOimpl adi = new AdminDAOimpl(ac);
-				if (adi.validateAdmin()==true) {
+	</script> --%>
+	<%
+		//}
+				}
+			} else {
+				Credentials ac = new Credentials(username, pwd, role);
+				ILogin adi = new Login();
+				if (adi.validateUser(ac)) {
 					//out.print("Succesful");
 					session.setAttribute("name", username);
-					response.sendRedirect("Admin_Dashboard.jsp");
-				} if (adi.validateAdmin()==false) {
+					response.sendRedirect("Operator_Dashboard.jsp");
+				} else {
 	%>
-	<div id="myModal" class="modal">
+	<%-- <div id="myModal" class="modal">
 		<div class="modal-content">
 			<span class="close">&times;</span>
 			<p id="msg1" align=center>
@@ -183,16 +200,19 @@
 					<p id="msg2" align="center" style="display: none;">
 						Enter your<strong> Registered Email Id</strong>
 					</p>
-					<input id="forgetemail" type="email" style="display: none;" required>
-					<input id="forgetbtn" type="submit"	style="display: none;" value="submit">
-					<a id="hlink" href="#" onclick="return executeforget()" class="special" style="text-align: center;">Forgot your Credentials? Click here </a>
+					<input id="forgetemail" type="email" style="display: none;"
+						required> <input id="forgetbtn" type="submit"
+						style="display: none;" value="submit"> <a id="hlink"
+						href="#" onclick="return executeforget()" class="special"
+						style="text-align: center;">Forgot your Credentials? Click
+						here </a>
 				</form>
 			</div>
 		</div>
 	</div>
 	<script>
 		function executeforget() {
-			
+
 			var button = document.getElementById("forgetbtn");
 			var email = document.getElementById("forgetemail");
 			var msg1 = document.getElementById("msg1");
@@ -207,22 +227,24 @@
 		}
 		var modal = document.getElementById('myModal');
 		var span = document.getElementsByClassName("close")[0];
-		
 	</script>
 	<script>
-	function mahesh() {
-		
-		modal.style.display = "block";
-	}
-	span.onclick = function() {
-		modal.style.display = "none";
-	}
-	mahesh();</script>
-	<%		}
-			}
-		} %>
+		function mahesh() {
 
-	
+			modal.style.display = "block";
+		}
+		span.onclick = function() {
+			modal.style.display = "none";
+		}
+		mahesh();
+	</script>
+	<%
+		}
+			}
+		} --%>
+	%>
+
+
 	<script
 		src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 	<script src="js/index.js"></script>
