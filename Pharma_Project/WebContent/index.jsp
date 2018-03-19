@@ -100,7 +100,7 @@
 					response.sendRedirect("Admin_Dashboard.jsp");
 				} else {
 	%>
-	<%-- <div id="myModal" class="modal">
+	<div id="myModal" class="modal">
 		<div class="modal-content">
 			<span class="close">&times;</span>
 			<p id="msg3" align=center>
@@ -175,9 +175,9 @@
 			var j = document.getElementById("forgetmsgfailure");
 			j.style.display = "block";
 		}
-	</script> --%>
+	</script>
 	<%
-		//}
+		}
 				}
 			} else {
 				Credentials ac = new Credentials(username, pwd, role);
@@ -188,7 +188,7 @@
 					response.sendRedirect("Operator_Dashboard.jsp");
 				} else {
 	%>
-	<%-- <div id="myModal" class="modal">
+	<div id="myModal" class="modal">
 		<div class="modal-content">
 			<span class="close">&times;</span>
 			<p id="msg1" align=center>
@@ -241,7 +241,7 @@
 	<%
 		}
 			}
-		} --%>
+		}
 	%>
 
 
