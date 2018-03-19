@@ -2,7 +2,6 @@ package com.DAO;
 
 public class AdminPOJO {
 
-
 	private String adminId;
 	private String adminUserName;
 	private String adminName;
