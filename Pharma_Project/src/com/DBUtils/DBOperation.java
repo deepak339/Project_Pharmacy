@@ -1,4 +1,4 @@
-package com.DBService;
+package com.DBUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
