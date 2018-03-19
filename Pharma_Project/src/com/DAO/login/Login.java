@@ -4,8 +4,14 @@ import com.DAO.Credentials;
 import com.dbutils.ConnectDB;
 public class Login implements ILogin{
 
-	@Override
-	public boolean validateUser(Credentials user) {
+	Credentials user;
+
+	public Login(Credentials user) {
+			this.user = user;
+	}
+
+	
+	public boolean validateUser() {
 		boolean result = false;
 		String userName = user.getUserName();
 		String userPassword = user.getUserPassword();
@@ -37,5 +43,6 @@ public class Login implements ILogin{
 
 		return result;
 	}
+
 	
 }

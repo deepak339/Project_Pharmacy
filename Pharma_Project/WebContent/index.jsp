@@ -83,163 +83,41 @@
 	</div>
 	<%
 		if (request.getParameter("name") != null) {
+			boolean role;
 			String username = request.getParameter("name");
 			String pwd = request.getParameter("pwd");
 			String role_play = request.getParameter("role_play");
-			boolean role = false;
+			System.out.print(username+" "+pwd+" "+role_play);
 			if (role_play.equals("true")) {
 				role = true;
-			} //role=1 for admin and vice versa
+			}
+			else
+			{
+				role = false;
+			}
 			if (role) {
 				Credentials oc = new Credentials(username, pwd, role);
-				ILogin oda = new Login();
+				Login oda = new Login(oc);
 
-				if (oda.validateUser(oc)) {
-					//out.print("Succesful login for operator");
+				if (oda.validateUser()) {
+					
 					session.setAttribute("name", username);
 					response.sendRedirect("Admin_Dashboard.jsp");
 				} else {
-	%>
-	<div id="myModal" class="modal">
-		<div class="modal-content">
-			<span class="close">&times;</span>
-			<p id="msg3" align=center>
-				<strong><br>Incorrect User Name or Password</strong>
-			</p>
-			<br>
-			<div>
-				<form action="./index.jsp" method="get">
-					<p id="msg4" align="center" style="display: none;">
-						Enter your<strong> Registered Email Id</strong>
-					</p>
-					<input id="forgetemail1" type="email" style="display: none;"
-						required> <input id="forgetbtn1" type="submit"
-						style="display: none;" value="submit"> <a id="hlink1"
-						href="#" onclick="return executeforget1()" class="special"
-						style="text-align: center;">Forgot your Credentials? Click
-						here </a>
-				</form>
-			</div>
-		</div>
-	</div>
-	<script>
-		function executeforget1() {
-
-			var button1 = document.getElementById("forgetbtn1");
-			var email1 = document.getElementById("forgetemail1");
-			var msg3 = document.getElementById("msg3");
-			var msg4 = document.getElementById("msg4");
-			var hlink1 = document.getElementById("hlink1");
-			email1.style.display = "block";
-			button1.style.display = "block";
-			msg3.style.display = "none";
-			hlink1.style.display = "none";
-			msg4.style.display = "block";
-			return false;
-		}
-		var modal = document.getElementById('myModal');
-		var span = document.getElementsByClassName("close")[0];
-	</script>
-	<script>
-		function mahesh() {
-			var modal = document.getElementById('myModal');
-			var span = document.getElementsByClassName("close")[0];
-			modal.style.display = "block";
-		}
-		span.onclick = function() {
-			modal.style.display = "none";
-		}
-		mahesh();
-	</script>
-	<%
-		boolean flag = false;
-					String oemail = request.getParameter("forgetemail1");
-					ForgetMailCheck ch = new ForgetMailCheck(oemail, flag);
-					boolean check = ch.validateEmail();
-
-					if (check == true) {
-	%><input type="hidden" value="" id="chk">
-	<script>
-		if (document.getElementById("chk").value == "true") {
-			var k = document.getElementById("forgetmsgsuccess");
-			k.style.display = "block";
-		}
-	</script>
-
-	<%
-		GetCredentials gc = new GetCredentials(oemail, flag);
-						Credentials opData = gc.GetData();
-					} else {
-	%><script>
-		if (document.getElementById("chk").value != "true") {
-			var j = document.getElementById("forgetmsgfailure");
-			j.style.display = "block";
-		}
-	</script>
-	<%
-		}
+					session.setAttribute("role", role_play);
+					response.sendRedirect("ForgetPwd.jsp");
 				}
 			} else {
 				Credentials ac = new Credentials(username, pwd, role);
-				ILogin adi = new Login();
-				if (adi.validateUser(ac)) {
-					//out.print("Succesful");
+				Login adi = new Login(ac);
+				if (adi.validateUser()) {
 					session.setAttribute("name", username);
 					response.sendRedirect("Operator_Dashboard.jsp");
 				} else {
-	%>
-	<div id="myModal" class="modal">
-		<div class="modal-content">
-			<span class="close">&times;</span>
-			<p id="msg1" align=center>
-				<strong><br>Incorrect User Name or Password</strong>
-			</p>
-			<br>
-			<div>
-				<form action="./index.jsp" method="get">
-					<p id="msg2" align="center" style="display: none;">
-						Enter your<strong> Registered Email Id</strong>
-					</p>
-					<input id="forgetemail" type="email" style="display: none;"
-						required> <input id="forgetbtn" type="submit"
-						style="display: none;" value="submit"> <a id="hlink"
-						href="#" onclick="return executeforget()" class="special"
-						style="text-align: center;">Forgot your Credentials? Click
-						here </a>
-				</form>
-			</div>
-		</div>
-	</div>
-	<script>
-		function executeforget() {
-
-			var button = document.getElementById("forgetbtn");
-			var email = document.getElementById("forgetemail");
-			var msg1 = document.getElementById("msg1");
-			var msg2 = document.getElementById("msg2");
-			var hlink = document.getElementById("hlink");
-			email.style.display = "block";
-			button.style.display = "block";
-			msg1.style.display = "none";
-			hlink.style.display = "none";
-			msg2.style.display = "block";
-			return false;
-		}
-		var modal = document.getElementById('myModal');
-		var span = document.getElementsByClassName("close")[0];
-	</script>
-	<script>
-		function mahesh() {
-
-			modal.style.display = "block";
-		}
-		span.onclick = function() {
-			modal.style.display = "none";
-		}
-		mahesh();
-	</script>
-	<%
-		}
+					session.setAttribute("role", role_play);
+					response.sendRedirect("Forgetpwd.jsp");
+					
+				}
 			}
 		}
 	%>
