@@ -1,4 +1,4 @@
-package com.DAO.DashboardOperations.Admin;
+package com.DAO.DashboardOperations.admin;
 
 public interface IAdminManageInventory {
 	

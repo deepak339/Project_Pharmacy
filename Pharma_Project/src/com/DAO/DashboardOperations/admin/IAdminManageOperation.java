@@ -1,8 +1,8 @@
-package com.DAO.DashboardOperations.Admin;
+package com.DAO.DashboardOperations.admin;
 
 
-import com.DAO.Credentials;
-import com.DAO.OperatorPOJO;
+import com.dao.Credentials;
+import com.dao.OperatorPOJO;
 
 
 public interface IAdminManageOperation {

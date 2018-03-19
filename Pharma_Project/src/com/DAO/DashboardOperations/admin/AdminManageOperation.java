@@ -1,12 +1,12 @@
-package com.DAO.OperationDAO;
+package com.DAO.DashboardOperations.admin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.DAO.Credentials;
-import com.DAO.OperatorPOJO;
-import com.DBUtils.ConnectDB;
+import com.DBService.ConnectDB;
+import com.dao.Credentials;
+import com.dao.OperatorPOJO;
 
 public class AdminManageOperation implements IAdminManageOperation {
 

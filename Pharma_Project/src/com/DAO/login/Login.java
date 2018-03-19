@@ -1,7 +1,9 @@
-package com.Login;
+package com.DAO.login;
+
 import java.sql.*;
-import com.DAO.Credentials;
-import com.DBUtils.ConnectDB;
+
+import com.dao.Credentials;
+import com.dbutils.ConnectDB;
 public class Login implements ILogin{
 	public boolean validateUser(Credentials user) {
 		boolean result = false;
@@ -34,5 +36,4 @@ public class Login implements ILogin{
 
 		return result;
 	}
-
 }

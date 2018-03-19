@@ -1,6 +1,6 @@
-package com.Login;
+package com.login;
 
-import com.DAO.Credentials;
+import com.dao.Credentials;
 
 public interface ILogin {
 	

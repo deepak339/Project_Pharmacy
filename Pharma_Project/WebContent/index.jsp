@@ -1,4 +1,4 @@
-
+<%@page import="com.DAO.Credentials"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -35,14 +35,14 @@
 								<div class="sminputs">
 									<div class="input full">
 										<label class="string optional" for="user-name">Username*</label>
-										<input class="string optional"  name="oname" id="user-Username" placeholder="Username" type="text" />
+										<input class="string optional"  name="name" id="user-Username" placeholder="Username" type="text" />
 									</div>
 								</div>
 								<input type="hidden" name="role_play" id="flag">
 								<div class="sminputs">
 									<div class="input full">
 										<label class="string optional" for="user-pw">Password*</label> 
-										<input name="opwd" class="form-control is-invalid" id="user-pw" placeholder="Password" type="password" /> 
+										<input name="pwd" class="form-control is-invalid" id="user-pw" placeholder="Password" type="password" /> 
 										<span class="hide-password">Show</span>
 									</div>
 								</div>
@@ -66,12 +66,14 @@
 		</div>
 	</div>
 	<%
-		if (request.getParameter("oname") != null) {
-			String username = request.getParameter("oname");
-			String pwd = request.getParameter("opwd");
-			String role = request.getParameter("role_play");
-			if (role.equals("0")) {
-			Credentials oc = new Credentials(username, pwd);
+		if (request.getParameter("name") != null) {
+			String username = request.getParameter("name");
+			String pwd = request.getParameter("pwd");
+			String role_play=request.getParameter("role_play");
+			boolean role=false;
+			if(role_play.equals("true")){role=true;}
+			if (role) {
+			Credentials oc = new Credentials(username, pwd,role);
 				OperatorDAOimpl odi = new OperatorDAOimpl(oc);
 				if (odi.validateOperator()==true) {
 					//out.print("Succesful login for operator");

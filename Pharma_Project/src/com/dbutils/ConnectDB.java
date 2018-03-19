@@ -1,4 +1,4 @@
-package com.DBUtils;
+package com.dbutils;
 
 import java.sql.*;
 
