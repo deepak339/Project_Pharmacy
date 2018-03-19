@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.DBService.ConnectDB;
-import com.dao.Credentials;
-import com.dao.OperatorPOJO;
+import com.dbutils.ConnectDB;
+import com.DAO.Credentials;
+import com.DAO.OperatorPOJO;
 
 public class AdminManageOperation implements IAdminManageOperation {
 

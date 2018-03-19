@@ -20,8 +20,8 @@ public class ConnectDB {
 		     * @return Connection object
 		     */
 		    public static Connection getConnection()
-		    {
-		    	Connection conn=null;
+		    {Connection conn=null;
+		    	
 		    	try {
 		    		
 		    		//STEP 2: Register and Load JDBC driver

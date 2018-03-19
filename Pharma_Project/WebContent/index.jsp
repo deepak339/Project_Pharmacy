@@ -115,7 +115,7 @@
 					response.sendRedirect("Operator_Dashboard.jsp");
 				} else {
 					session.setAttribute("role", role_play);
-					response.sendRedirect("Forgetpwd.jsp");
+					response.sendRedirect("ForgetPwd.jsp");
 					
 				}
 			}
