@@ -1,10 +1,10 @@
 package com.DAO.login;
-
 import java.sql.*;
-
-import com.dao.Credentials;
+import com.DAO.Credentials;
 import com.dbutils.ConnectDB;
 public class Login implements ILogin{
+
+	@Override
 	public boolean validateUser(Credentials user) {
 		boolean result = false;
 		String userName = user.getUserName();
@@ -36,4 +36,5 @@ public class Login implements ILogin{
 
 		return result;
 	}
+	
 }
