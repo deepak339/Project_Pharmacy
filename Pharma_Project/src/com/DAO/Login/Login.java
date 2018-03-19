@@ -1,11 +1,11 @@
-package com.DAO.LoginDAO;
+package com.DAO.Login;
 
 import java.sql.*;
 
 import com.DAO.Credentials;
 import com.DBService.ConnectDB;
 
-public class LoginDAO implements ILoginDAO{
+public class Login implements ILogin{
 
 
 	

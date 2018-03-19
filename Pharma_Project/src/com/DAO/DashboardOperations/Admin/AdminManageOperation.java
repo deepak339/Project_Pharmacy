@@ -1,4 +1,4 @@
-package com.DAO.OperationDAO;
+package com.DAO.DashboardOperations.Admin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

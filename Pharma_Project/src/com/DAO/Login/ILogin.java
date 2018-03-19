@@ -1,8 +1,8 @@
-package com.DAO.LoginDAO;
+package com.DAO.Login;
 
 import com.DAO.Credentials;
 
-public interface ILoginDAO {
+public interface ILogin {
 	
 	
 	public boolean validateUser(Credentials user);
