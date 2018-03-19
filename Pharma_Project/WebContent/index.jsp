@@ -95,9 +95,10 @@
 			{
 				role = false;
 			}
+			Credentials oc = new Credentials(username, pwd, role);
+			Login oda = new Login(oc);
 			if (role) {
-				Credentials oc = new Credentials(username, pwd, role);
-				Login oda = new Login(oc);
+				
 
 				if (oda.validateUser()) {
 					
@@ -105,12 +106,13 @@
 					response.sendRedirect("Admin_Dashboard.jsp");
 				} else {
 					session.setAttribute("role", role_play);
+					
+					
 					response.sendRedirect("ForgetPwd.jsp");
 				}
 			} else {
-				Credentials ac = new Credentials(username, pwd, role);
-				Login adi = new Login(ac);
-				if (adi.validateUser()) {
+				
+				if (oda.validateUser()) {
 					session.setAttribute("name", username);
 					response.sendRedirect("Operator_Dashboard.jsp");
 				} else {
