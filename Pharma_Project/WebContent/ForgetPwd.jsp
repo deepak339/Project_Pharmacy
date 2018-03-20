@@ -23,7 +23,7 @@
 				<div class="logmod__tab-wrapper"></div>
 					<div class="logmod__heading">
 							<span class="logmod__heading-subtitle">Enter your Registered
-								Email <strong>to get Password</strong>
+								Email <strong>to get your Credentials</strong>
 							</span>
 						</div>
 						<div class="logmod__form">
@@ -48,6 +48,7 @@
 							<span style="display:none;" id ="forgetmsgfailure" class="logmod__heading-subtitle" >This <strong>Email not Registered</strong> with us
 							</span>
 						</div>
+						
 						<input type="hidden" value="<%=request.getParameter("role") %>" name="role">
 								<div class="simform__actions">
 									<input  class="sumbit" name="commit" type="submit" 
@@ -67,24 +68,25 @@
 						{
 							document.getElementById("forgetmsgfailed").style.display="block";
 						}
+						
 						</script>
 						</div>
 						
 			</div>
 		</div>
 	</div>
-<%	
+<%String role_play = request.getParameter("role");
+boolean role;
+if (role_play.equals("true")) {
+	role = true;
+}
+else
+{
+	role=false;
+}	
 if(request.getParameter("role")!=null && request.getParameter("email")!=null)
 {
-	String role_play = request.getParameter("role");
-	boolean role;
-	if (role_play.equals("true")) {
-		role = true;
-	}
-	else
-	{
-		role=false;
-	}
+	
 	String email = request.getParameter("email");
 	Email e = new Email(email, role);
 	if(e.checkemail())
@@ -99,7 +101,7 @@ if(request.getParameter("role")!=null && request.getParameter("email")!=null)
 		}
 	}
 	else
-	{
+	{			
 		out.print("<script>displayMsgfailure();</script>");	
 	}
 		
