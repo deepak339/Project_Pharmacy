@@ -1,5 +1,4 @@
 package com.notifications;
-import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +8,6 @@ import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -38,7 +36,7 @@ public class Email {
 				sqlQuery="select operator_email from operator where operator_email=?";
 			}
 			PreparedStatement pstmt = con.prepareStatement(sqlQuery);
-			pstmt.setString(1,email);
+			pstmt.setString(1,userEmail);
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next() )
 			{
@@ -58,6 +56,7 @@ public class Email {
 
 		final String username = "project.pharmachain@gmail.com";
 		final String pwd = "Passw0rd@1";
+		String userEmail = email;
 		Properties props = new Properties();
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.auth", "true");
@@ -74,7 +73,7 @@ public class Email {
 			message.setFrom(new InternetAddress("project.pharmachain@gmail.com"));
 
 			message.setRecipients(Message.RecipientType.TO,
-					InternetAddress.parse(email));
+					InternetAddress.parse(userEmail));
 
 			message.setSubject("Testing Subject");
 			message.setText("Hey Mahesh,"
