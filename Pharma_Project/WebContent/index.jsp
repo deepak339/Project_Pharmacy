@@ -57,6 +57,24 @@
 											class="hide-password">Show</span>
 									</div>
 								</div>
+								<!--  Start_of-Code Error message div and forgot Password msg div which is hidden currently  -->
+								
+								
+						<script>
+						function displayErrDiv()
+						{
+							document.getElementById("index_err_div").style.display="block";
+							document.getElementById("fgt_pwd_link").style.display="block";
+						}
+						</script>
+								
+								
+								
+								
+								<!--  End_of-Code Error message div and forgot Password msg div which is hidden currently  -->
+								
+								
+								
 								<div class="logmod__heading">
 									<span style="display: none;" id="forgetmsgsuccess"
 										class="logmod__heading-subtitle"><strong>Password
@@ -69,11 +87,21 @@
 									</span>
 								</div>
 								<div class="simform__actions" align=center>
-									<br> <input type="button" class="btn btn-success"
+								<div id="index_err_div" class="logmod__heading" style="display:none;" >
+							<span class="logmod__heading-subtitle">
+							<strong>Entered Credentials are Wrong</strong>
+							</span>	
+						</div>
+									
+									<a class="special" role="link" id="fgt_pwd_link" href="ForgetPwd.jsp?role=<%=request.getParameter("role_play") %>"  style="display:none;">Forgot
+										your Credentials? Click here</a><br>
+										
+										 <input type="button" class="btn btn-success"
 										name="commit" onclick="myFunctionAdmin()"
 										value="Login as Admin" /> <input type="button"
 										class="btn btn-success" name="commit"
 										onclick="myFunctionOperator()" value="Login as Operator" /> <br>
+										
 								</div>
 							</form>
 						</div>
@@ -106,10 +134,14 @@
 					session.setAttribute("name", username);
 					response.sendRedirect("Admin_Dashboard.jsp");
 				} else {
-					session.setAttribute("role", role_play);
 					
+					//session.setAttribute("role", role_play);
+					/* RequestDispatcher rd = request.getRequestDispatcher("ForgetPwd.jsp");
+					rd.forward(request, response);
+					 */
+					out.print("<script>displayErrDiv();</script>");
 					
-					response.sendRedirect("ForgetPwd.jsp");
+					//response.sendRedirect("ForgetPwd.jsp?role="+role);
 				}
 			} else {
 				
@@ -117,8 +149,10 @@
 					session.setAttribute("name", username);
 					response.sendRedirect("Operator_Dashboard.jsp");
 				} else {
-					session.setAttribute("role", role_play);
-					response.sendRedirect("ForgetPwd.jsp");
+					//session.setAttribute("role", role_play);
+					
+					out.print("<script>displayErrDiv();</script>");
+					//response.sendRedirect("ForgetPwd.jsp");
 					
 				}
 			}
