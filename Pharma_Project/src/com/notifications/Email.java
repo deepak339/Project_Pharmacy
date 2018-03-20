@@ -13,18 +13,18 @@ import javax.mail.internet.MimeMessage;
 
 import com.dbutils.ConnectDB;
 public class Email {
-	private String email;
+	private String emailID;
 	private boolean role;
 
 	public Email(String email, boolean role) {
 		super();
-		this.email = email;
+		this.emailID = email;
 		this.role = role;
 	}
 	public boolean checkemail()
 	{	
 
-		String userEmail = email;
+		String userEmail = emailID;
 		try (Connection con = ConnectDB.getConnection()){
 			String sqlQuery;
 			if(role)
@@ -56,7 +56,7 @@ public class Email {
 
 		final String username = "project.pharmachain@gmail.com";
 		final String pwd = "Passw0rd@1";
-		String userEmail = email;
+		String userEmail = emailID;
 		Properties props = new Properties();
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.auth", "true");
