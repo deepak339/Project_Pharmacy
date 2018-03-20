@@ -11,6 +11,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import com.DAO.Credentials;
 import com.dbutils.ConnectDB;
 public class Email {
 	private String emailID;
@@ -24,7 +25,7 @@ public class Email {
 	public boolean checkemail()
 	{	
 
-		String userEmail = emailID;
+		
 		try (Connection con = ConnectDB.getConnection()){
 			String sqlQuery;
 			if(role)
@@ -36,7 +37,7 @@ public class Email {
 				sqlQuery="select operator_email from operator where operator_email=?";
 			}
 			PreparedStatement pstmt = con.prepareStatement(sqlQuery);
-			pstmt.setString(1,userEmail);
+			pstmt.setString(1,emailID);
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next() )
 			{
@@ -51,9 +52,50 @@ public class Email {
 		return false;
 
 	}
-	public boolean sendemail()
-	{
+	
+		
+		
 
+		public Credentials GetCredentials() throws Exception {
+			Connection conn = ConnectDB.getConnection();
+			
+			String sql;
+			System.out.println("in validateUser..."+conn);
+			Credentials oc= new Credentials();
+			if(role==false)
+			{
+			sql="select operator_username, operator_password from operator where operator_email= ?";
+			oc.setRole(role);
+			}
+			else
+			{
+				sql="select admin_username, admin_password from admin where admin_email= ?";
+				oc.setRole(role);
+			}
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, emailID);
+	ResultSet rs = pstmt.executeQuery();
+	while(rs.next())
+			{
+		if(oc.getRole())
+		{
+			oc.setUserName(rs.getString("admin_username"));
+			oc.setUserPassword(rs.getString("admin_password"));
+		}else
+		{
+		oc.setUserName(rs.getString("operator_username"));
+		oc.setUserPassword(rs.getString("operator_password"));
+		}
+		return oc;
+			}
+	return null;
+
+	}
+	
+
+	public boolean sendemail() throws Exception
+	{
+		Credentials ac = GetCredentials();
 		final String username = "project.pharmachain@gmail.com";
 		final String pwd = "Passw0rd@1";
 		String userEmail = emailID;
@@ -75,9 +117,11 @@ public class Email {
 			message.setRecipients(Message.RecipientType.TO,
 					InternetAddress.parse(userEmail));
 
-			message.setSubject("Testing Subject");
-			message.setText("Hey Mahesh,"
-					+ "\n\n I am sending this for testing purpose.");
+			message.setSubject("Credentials");
+			message.setText("Hey "+ac.getUserName()+","
+					+ "\n\n I am sending your Login credentials."+
+					"\n UserName = "+ac.getUserName()+
+					"\n Password = "+ac.getUserPassword());
 
 			Transport.send(message);
 
