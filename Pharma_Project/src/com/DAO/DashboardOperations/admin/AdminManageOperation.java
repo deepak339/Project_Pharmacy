@@ -109,20 +109,20 @@ public class AdminManageOperation implements IAdminManageOperation {
 		boolean flag = false;
 
 		try(Connection con = ConnectDB.getConnection()) {
-			
+
 			String queryString="update operator set operator_status=? where operator_username=?";
 			PreparedStatement pstmt = con.prepareStatement(queryString);
 			pstmt.setString(1, status);
 			pstmt.setString(2, operatorUserName);
-			
+
 			int affected_row = pstmt.executeUpdate();
 			if(affected_row>0)
 			{
 				flag = true;
 			}
-			
 
-		
+
+
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -137,20 +137,20 @@ public class AdminManageOperation implements IAdminManageOperation {
 		boolean flag = false;
 
 		try(Connection con = ConnectDB.getConnection()) {
-			
+
 			String queryString="update operator set operator_branch=? where operator_username=?";
 			PreparedStatement pstmt = con.prepareStatement(queryString);
 			pstmt.setString(1, branch);
 			pstmt.setString(2, operatorUserName);
-			
+
 			int affected_row = pstmt.executeUpdate();
 			if(affected_row>0)
 			{
 				flag = true;
 			}
-			
 
-		
+
+
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -163,7 +163,44 @@ public class AdminManageOperation implements IAdminManageOperation {
 
 	public OperatorPOJO getOperatorByUserName(String operatorUserName) {
 		// TODO Auto-generated method stub
-		return null;
+		OperatorPOJO operator=null;
+		
+		try(Connection con = ConnectDB.getConnection()) {
+
+			String queryString="select operator_id,operator_username,operator_name,operator_doj,operator_status,"
+					+ "operator_branch,operator_phone,operator_email"
+					+ " from operator where operator_username=?";
+			PreparedStatement pstmt = con.prepareStatement(queryString);
+		
+			pstmt.setString(1, operatorUserName);
+
+			ResultSet result = pstmt.executeQuery();
+			
+			if(result.next())
+			{
+				operator = new OperatorPOJO();
+				operator.setOperatorId(""+result.getInt("operator_id"));
+				operator.setOperatorUsername(result.getString("operator_username"));
+				operator.setOperatorName(result.getString("operator_name"));
+				operator.setOperatorDoj(result.getString("operator_doj"));
+				operator.setOperatorStatus(""+result.getBoolean("operator_status"));
+				operator.setOperatorBranch(result.getString("operator_branch"));
+				operator.setOperatorPhone(result.getString("operstor_phone"));
+				operator.setOperatorEmail(result.getString("operator_email"));
+				
+				
+			}
+
+
+
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+
+
+		return operator;
 	}
 
 }

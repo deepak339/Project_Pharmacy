@@ -9,9 +9,7 @@ public class DBOperation {
 	
 	private Connection con=null;
 	
-	private String sqlString;
-	
-	private ArrayList<String> a; 
+
 	
 	public DBOperation(Connection con) {
 		super();
