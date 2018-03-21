@@ -98,9 +98,35 @@ public class AdminManageOperation implements IAdminManageOperation {
 
 	public boolean removeOperator(String operatorUserName) {
 		// TODO Auto-generated method stub
+		boolean flag = false;
+
+		try(Connection con = ConnectDB.getConnection()) {
+
+			String queryString="update operator set operator_status=? where operator_username=?";
+			PreparedStatement pstmt = con.prepareStatement(queryString);
+			/*
+			 * 
+			 * retrive the status and change it
+			 * 
+			 * */
+			pstmt.setString(2, operatorUserName);
+
+			int affected_row = pstmt.executeUpdate();
+			if(affected_row>0)
+			{
+				flag = true;
+			}
 
 
-		return false;
+
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+
+		return flag;
+
 	}
 
 
