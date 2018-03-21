@@ -12,7 +12,7 @@ public class AdminManageOperation implements IAdminManageOperation {
 
 
 	public OperatorPOJO[] getAllOperators() {
-		// TODO Auto-generated method stub
+
 		OperatorPOJO[] operatorList = null;
 		try(Connection con = ConnectDB.getConnection()) {
 
@@ -46,7 +46,7 @@ public class AdminManageOperation implements IAdminManageOperation {
 
 
 		} catch (Exception e) {
-			// TODO: handle exception
+
 			System.out.println(e.getMessage() );
 		}
 
@@ -55,7 +55,7 @@ public class AdminManageOperation implements IAdminManageOperation {
 
 
 	public boolean addOperator(Credentials auth, OperatorPOJO operatorInfo) {
-		// TODO Auto-generated method stub
+
 
 		boolean flag=false;
 
@@ -88,7 +88,7 @@ public class AdminManageOperation implements IAdminManageOperation {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+
 			System.out.println(e.getMessage());
 		}
 
@@ -97,7 +97,7 @@ public class AdminManageOperation implements IAdminManageOperation {
 
 
 	public boolean removeOperator(String operatorUserName) {
-		// TODO Auto-generated method stub
+
 		boolean flag = false;
 
 		try(Connection con = ConnectDB.getConnection()) {
@@ -121,7 +121,7 @@ public class AdminManageOperation implements IAdminManageOperation {
 
 
 		} catch (Exception e) {
-			// TODO: handle exception
+
 			System.out.println(e.getMessage());
 		}
 
@@ -131,7 +131,7 @@ public class AdminManageOperation implements IAdminManageOperation {
 
 
 	public boolean updateOperatorStatus(String operatorUserName,String status) {
-		// TODO Auto-generated method stub
+
 		boolean flag = false;
 
 		try(Connection con = ConnectDB.getConnection()) {
@@ -151,7 +151,7 @@ public class AdminManageOperation implements IAdminManageOperation {
 
 
 		} catch (Exception e) {
-			// TODO: handle exception
+
 			System.out.println(e.getMessage());
 		}
 
@@ -159,7 +159,7 @@ public class AdminManageOperation implements IAdminManageOperation {
 	}
 
 	public boolean updateOperatorBranch(String operatorUserName,String branch) {
-		// TODO Auto-generated method stub
+
 		boolean flag = false;
 
 		try(Connection con = ConnectDB.getConnection()) {
@@ -179,7 +179,7 @@ public class AdminManageOperation implements IAdminManageOperation {
 
 
 		} catch (Exception e) {
-			// TODO: handle exception
+
 			System.out.println(e.getMessage());
 		}
 
@@ -188,20 +188,20 @@ public class AdminManageOperation implements IAdminManageOperation {
 	}
 
 	public OperatorPOJO getOperatorByUserName(String operatorUserName) {
-		// TODO Auto-generated method stub
+
 		OperatorPOJO operator=null;
-		
+
 		try(Connection con = ConnectDB.getConnection()) {
 
 			String queryString="select operator_id,operator_username,operator_name,operator_doj,operator_status,"
 					+ "operator_branch,operator_phone,operator_email"
 					+ " from operator where operator_username=?";
 			PreparedStatement pstmt = con.prepareStatement(queryString);
-		
+
 			pstmt.setString(1, operatorUserName);
 
 			ResultSet result = pstmt.executeQuery();
-			
+
 			if(result.next())
 			{
 				operator = new OperatorPOJO();
@@ -213,15 +213,15 @@ public class AdminManageOperation implements IAdminManageOperation {
 				operator.setOperatorBranch(result.getString("operator_branch"));
 				operator.setOperatorPhone(result.getString("operstor_phone"));
 				operator.setOperatorEmail(result.getString("operator_email"));
-				
-				
+
+
 			}
 
 
 
 
 		} catch (Exception e) {
-			// TODO: handle exception
+
 			System.out.println(e.getMessage());
 		}
 

@@ -5,14 +5,17 @@ import com.DAO.ProductExpiryPOJO;
 import com.DAO.ProductPOJO;
 
 public interface IAdminManageInventory {
-<<<<<<< HEAD
+
 	
 	public ProductPOJO[] getAllProducts();
+	
 	public boolean addProduct(Credentials auth, ProductExpiryPOJO productInfo);
 	
-=======
-	public boolean addProducts();
+	public boolean removeProduct(String productName);
+	
+	public boolean updateProduct(String productName, String productQuantity);
+	
+	public ProductExpiryPOJO getProductByName(String productName);
+	
 	 
->>>>>>> branch 'master' of https://github.com/deepak339/Project_Pharmacy.git
-
 }
