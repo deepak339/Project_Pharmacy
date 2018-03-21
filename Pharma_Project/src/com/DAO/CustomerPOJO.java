@@ -5,6 +5,19 @@ public class CustomerPOJO {
 	private String customerName;
 	private String customerEmail;
 	private String customerPhone;
+	
+	public CustomerPOJO() {
+		
+	}
+	
+	public CustomerPOJO(String customerId, String customerName, String customerEmail, String customerPhone) {
+		super();
+		this.customerId = customerId;
+		this.customerName = customerName;
+		this.customerEmail = customerEmail;
+		this.customerPhone = customerPhone;
+	}
+
 	public String getCustomerId() {
 		return customerId;
 	}

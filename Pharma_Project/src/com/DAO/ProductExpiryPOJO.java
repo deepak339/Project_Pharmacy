@@ -5,6 +5,20 @@ public class ProductExpiryPOJO {
 	private String batchId;
 	private String productExpiryDate;
 	private String productQuantity;
+	
+	public ProductExpiryPOJO() {
+		
+	}
+	
+	public ProductExpiryPOJO(ProductPOJO productInfo, String batchId, String productExpiryDate,
+			String productQuantity) {
+		super();
+		this.productInfo = productInfo;
+		this.batchId = batchId;
+		this.productExpiryDate = productExpiryDate;
+		this.productQuantity = productQuantity;
+	}
+
 	public ProductPOJO getProductInfo() {
 		return productInfo;
 	}

@@ -6,7 +6,22 @@ public class ProductPOJO {
 	private String productType;
 	private String productPrice;
 	private SupplierPOJO supplierInfo;
-		public String getProductId() {
+	
+	public ProductPOJO() {
+		
+	}
+	
+	public ProductPOJO(String productId, String productName, String productType, String productPrice,
+			SupplierPOJO supplierInfo) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productType = productType;
+		this.productPrice = productPrice;
+		this.supplierInfo = supplierInfo;
+	}
+
+	public String getProductId() {
 		return productId;
 	}
 	public void setProductId(String productId) {

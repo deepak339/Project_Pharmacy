@@ -6,6 +6,21 @@ public class PrescriptionPOJO {
 	private String doctorName;
 	private String prescriptionDate;
 	private String productQuantity;
+	
+	public PrescriptionPOJO() {
+		
+	}
+	
+	public PrescriptionPOJO(String prescriptionId, ProductPOJO productInfo, String doctorName, String prescriptionDate,
+			String productQuantity) {
+		super();
+		this.prescriptionId = prescriptionId;
+		this.productInfo = productInfo;
+		this.doctorName = doctorName;
+		this.prescriptionDate = prescriptionDate;
+		this.productQuantity = productQuantity;
+	}
+
 	public String getPrescriptionId() {
 		return prescriptionId;
 	}

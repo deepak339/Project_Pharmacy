@@ -5,6 +5,19 @@ public class SupplierPOJO {
 	private String supplierCompany;
 	private String supplierEmail;
 	private String supplierPhone;
+	
+	public SupplierPOJO() {
+		
+	}
+	
+	public SupplierPOJO(String supplierId, String supplierCompany, String supplierEmail, String supplierPhone) {
+		super();
+		this.supplierId = supplierId;
+		this.supplierCompany = supplierCompany;
+		this.supplierEmail = supplierEmail;
+		this.supplierPhone = supplierPhone;
+	}
+
 	public String getSupplierId() {
 		return supplierId;
 	}

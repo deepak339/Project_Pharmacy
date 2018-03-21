@@ -8,6 +8,23 @@ public class BillPOJO {
 	private String paymentMode;
 	private String bill;
 	private PrescriptionPOJO prescriptionInfo;
+	
+	public BillPOJO() {
+		
+	}
+	
+	public BillPOJO(String transactionId, String transactionDate, CustomerPOJO customerInfo, OperatorPOJO operatorInfo,
+			String paymentMode, String bill, PrescriptionPOJO prescriptionInfo) {
+		super();
+		this.transactionId = transactionId;
+		this.transactionDate = transactionDate;
+		this.customerInfo = customerInfo;
+		this.operatorInfo = operatorInfo;
+		this.paymentMode = paymentMode;
+		this.bill = bill;
+		this.prescriptionInfo = prescriptionInfo;
+	}
+
 	public String getTransactionId() {
 		return transactionId;
 	}
