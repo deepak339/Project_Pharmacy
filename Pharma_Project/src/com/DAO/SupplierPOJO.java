@@ -1,0 +1,38 @@
+package com.DAO;
+
+public class SupplierPOJO {
+	private String supplierId;
+	private String supplierCompany;
+	private String supplierEmail;
+	private String supplierPhone;
+	public String getSupplierId() {
+		return supplierId;
+	}
+	public void setSupplierId(String supplierId) {
+		this.supplierId = supplierId;
+	}
+	public String getSupplierCompany() {
+		return supplierCompany;
+	}
+	public void setSupplierCompany(String supplierCompany) {
+		this.supplierCompany = supplierCompany;
+	}
+	public String getSupplierEmail() {
+		return supplierEmail;
+	}
+	public void setSupplierEmail(String supplierEmail) {
+		this.supplierEmail = supplierEmail;
+	}
+	public String getSupplierPhone() {
+		return supplierPhone;
+	}
+	public void setSupplierPhone(String supplierPhone) {
+		this.supplierPhone = supplierPhone;
+	}
+	@Override
+	public String toString() {
+		return "SupplierPOJO [supplierId=" + supplierId + ", supplierCompany=" + supplierCompany + ", supplierEmail="
+				+ supplierEmail + ", supplierPhone=" + supplierPhone + "]";
+	}
+	
+}
