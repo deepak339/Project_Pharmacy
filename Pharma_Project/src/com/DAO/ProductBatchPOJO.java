@@ -1,16 +1,16 @@
 package com.DAO;
 
-public class ProductExpiryPOJO {
+public class ProductBatchPOJO {
 	private ProductPOJO productInfo;
 	private String batchId;
 	private String productExpiryDate;
 	private String productQuantity;
 	
-	public ProductExpiryPOJO() {
+	public ProductBatchPOJO() {
 		
 	}
 	
-	public ProductExpiryPOJO(ProductPOJO productInfo, String batchId, String productExpiryDate,
+	public ProductBatchPOJO(ProductPOJO productInfo, String batchId, String productExpiryDate,
 			String productQuantity) {
 		super();
 		this.productInfo = productInfo;
