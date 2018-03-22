@@ -6,7 +6,7 @@ import com.DAO.ProductPOJO;
 public interface IAdminManageInventory {
 
 	
-	public ProductPOJO[] getAllProducts();//Product object must have arraylist of batch objects,
+	public ProductPOJO[] getAllProducts();//Product object must have array list of batch objects,
 	
 	public boolean addProduct(ProductPOJO productInfo);
 	
