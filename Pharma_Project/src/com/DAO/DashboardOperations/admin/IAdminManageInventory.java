@@ -14,7 +14,6 @@ public interface IAdminManageInventory {
 	
 	public boolean removeProduct(String productName);//need to take of batches of product
 	
-
 	public boolean updateProduct(String productName, String productQuantity);
 	
 	public ProductBatchPOJO getProductByName(String productName); // it must return array of product batches
