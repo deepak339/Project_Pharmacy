@@ -6,15 +6,15 @@ import com.DAO.ProductPOJO;
 public interface IAdminManageInventory {
 
 	
-	public ProductPOJO[] getAllProducts();
+	public ProductPOJO[] getAllProducts();//Product object must have arraylist of batch objects,
 	
 	public boolean addProduct(ProductBatchPOJO productInfo);
 	
-	public boolean removeProduct(String productName);
+	public boolean removeProduct(String productName);//need to take of batches of product
 	
 	public boolean updateProduct(String productName, String productQuantity);
 	
-	public ProductBatchPOJO getProductByName(String productName);
+	public ProductBatchPOJO getProductByName(String productName); // it must return array of product batches
 	
 	 
 }
