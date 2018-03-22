@@ -1,26 +1,27 @@
 package com.DAO;
 
+import java.util.List;
+
 public class ProductPOJO {
 	private String productId;
 	private String productName;
 	private String productType;
 	private String productPrice;
 	private SupplierPOJO supplierInfo;
-	
+	private List<ProductBatchPOJO> batches;
 	public ProductPOJO() {
 		
 	}
-	
 	public ProductPOJO(String productId, String productName, String productType, String productPrice,
-			SupplierPOJO supplierInfo) {
+			SupplierPOJO supplierInfo, List<ProductBatchPOJO> batches) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
 		this.productType = productType;
 		this.productPrice = productPrice;
 		this.supplierInfo = supplierInfo;
+		this.batches = batches;
 	}
-
 	public String getProductId() {
 		return productId;
 	}
@@ -51,11 +52,18 @@ public class ProductPOJO {
 	public void setSupplierInfo(SupplierPOJO supplierInfo) {
 		this.supplierInfo = supplierInfo;
 	}
+	public List<ProductBatchPOJO> getBatches() {
+		return batches;
+	}
+	public void setBatches(List<ProductBatchPOJO> batches) {
+		this.batches = batches;
+	}
 	@Override
 	public String toString() {
 		return "ProductPOJO [productId=" + productId + ", productName=" + productName + ", productType=" + productType
-				+ ", productPrice=" + productPrice + ", supplierInfo=" + supplierInfo + "]";
+				+ ", productPrice=" + productPrice + ", supplierInfo=" + supplierInfo + ", batches=" + batches + "]";
 	}
+	
 	
 	
 
