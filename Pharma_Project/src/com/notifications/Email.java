@@ -18,7 +18,7 @@ public class Email {
 	private boolean role;
 
 	public Email(String email, boolean role) {
-		super();
+	
 		this.emailID = email;
 		this.role = role;
 	}

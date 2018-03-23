@@ -12,9 +12,18 @@ public class ProductPOJO {
 	public ProductPOJO() {
 		
 	}
+	
+	public ProductPOJO(String productId, String productName, String productType, String productPrice) {
+		
+		this.productId = productId;
+		this.productName = productName;
+		this.productType = productType;
+		this.productPrice = productPrice;
+	}
+
 	public ProductPOJO(String productId, String productName, String productType, String productPrice,
 			SupplierPOJO supplierInfo, List<ProductBatchPOJO> batches) {
-		super();
+		
 		this.productId = productId;
 		this.productName = productName;
 		this.productType = productType;
